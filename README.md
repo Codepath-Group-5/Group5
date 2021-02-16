@@ -77,7 +77,7 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="https://imgur.com/a/9xXihjB.jpg" width=600>
+<img src="image0.jpg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
