@@ -1,7 +1,7 @@
-Original App Design Project - README Template
+Original App Design Project - README
 ===
 
-# APP_NAME_HERE
+# Stockpile
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -11,16 +11,15 @@ Original App Design Project - README Template
 
 ## Overview
 ### Description
-[Description of your app]
+Tracks stocks, and retrieves data from an API. Allows the user to recieve an alert when a specific stock hits a certain price.
 
 ### App Evaluation
-[Evaluation of your app across the following attributes]
-- **Category:**
-- **Mobile:**
-- **Story:**
-- **Market:**
-- **Habit:**
-- **Scope:**
+- **Category:** Finance
+- **Mobile:** The application is primarly developed for mobile, however it would be viable for future implementation on computer or web-based applications.
+- **Story:** Analyzes user selected stocks and displays data about them, and notifies them when stocks hit a threshold. 
+- **Market:** Any individual over 18 can use this application to augment their trading experience. 
+- **Habit:** This app can be used as often as the user would like depending on how interested the user is in stock trading.
+- **Scope:** The audience of this app is targeted towards those who are interested in trading equities or learning more about trading in general.
 
 ## Product Spec
 
@@ -28,39 +27,53 @@ Original App Design Project - README Template
 
 **Required Must-have Stories**
 
-* [fill in your required user stories here]
-* ...
+* Create an account, log in, log out
+* Search for stock and have a list matching search query pop up
+* Detail view for the individual stock
+* Feed of related stocks 
+* Allow user to create a watchlist for easy access to favorited stocks
+* Allow user to create alerts for stocks
 
 **Optional Nice-to-have Stories**
 
-* [fill in your required user stories here]
-* ...
+* News for relevant stocks (from Bloomberg API)
+* Social media aspect
+    * Messages
 
 ### 2. Screen Archetypes
 
-* [list first screen here]
-   * [list associated required story here]
-   * ...
-* [list second screen here]
-   * [list associated required story here]
-   * ...
+* Login
+* Register - User signs up or logs into their account
+   * Upon Download/Reopening of the application, the user is prompted to log in to gain access to their profile information.
+* Home/Trending Feed
+   * User can view the current top trending stocks
+* Settings
+   * Allows user to set up the frequency of their alerts and how they receive their alerts
+* Search 
+    * Allows user to search for stocks.
+* Detail 
+    * View in-depth information on the selected stocks from the ListView (Search Screen)
+* Profile
+    * User can view their watchlist and other related information
+* Notifications 
+    * User can view their notifications.
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* [fill out your first tab]
-* [fill out your second tab]
-* [fill out your third tab]
+* Trending Feed
+* Search
+* Notifications
+* Profile / Watchlist
+* Settings
 
 **Flow Navigation** (Screen to Screen)
 
-* [list first screen here]
-   * [list screen navigation here]
-   * ...
-* [list second screen here]
-   * [list screen navigation here]
-   * ...
+* Forced Log-in -> Account creation if no log in is available
+* Settings -> Toggle Settings
+* Search -> Toggle Search -> Find the stock and show its data
+* Profile -> Detail
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
