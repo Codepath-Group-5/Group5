@@ -80,6 +80,7 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
 <img src="image0.jpg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
+<img src="stockpot_digital_wireframe.png" width=600>
 
 ### [BONUS] Interactive Prototype
 
