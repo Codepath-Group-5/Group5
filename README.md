@@ -81,6 +81,7 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
 
 ### [BONUS] Digital Wireframes & Mockups
 <img src="stockpot_digital_wireframe.png" width=600>
+<img src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FadyZxIAvCCAnQBU6FzTSnW%2FStockpot-Wireframes%3Fnode-id%3D2%253A17%26scaling%3Dscale-down" width=600>
 
 ### [BONUS] Interactive Prototype
 
