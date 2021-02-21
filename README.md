@@ -83,7 +83,7 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
 <img src="stockpot_digital_wireframe.png" width=600>
 
 ### [BONUS] Interactive Prototype
-<img src="stockpot_prototype.gif" width=600>
+<img src="stockpot_prototype.gif" width=400>
 
 ## Schema 
 [This section will be completed in Unit 9]
