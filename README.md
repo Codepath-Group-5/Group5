@@ -97,7 +97,7 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
    | username      | String | username for the user |
    | password      | String   | password for the user   |
    | stocks       | Array   | array of stocks |
-   
+   | notifications | Array | array of notifications | 
 
 ### Networking
 #### List of network requests by screen
