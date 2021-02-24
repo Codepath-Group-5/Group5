@@ -101,27 +101,29 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
 
 ### Networking
 #### List of network requests by screen
+   - Login/Register Screen
+      - (Read/GET) Query logged in user object
+      - (Create/POST) Create a new user object
    - Home Feed Screen
-      - (Read/GET) Query all posts where user is author
+      - (Read/GET) Query top trending stocks
          ```swift
-         let query = PFQuery(className:"Post")
-         query.whereKey("author", equalTo: currentUser)
-         query.order(byDescending: "createdAt")
-         query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
+         let query = PFQuery(className:"Stock")
+         query.order(byDescending: "popular")
+         query.findObjectsInBackground { (stocks: [PFObject]?, error: Error?) in
             if let error = error { 
                print(error.localizedDescription)
-            } else if let posts = posts {
-               print("Successfully retrieved \(posts.count) posts.")
-           // TODO: Do something with posts...
+            } else if let stocks = stocks {
+               print("Successfully retrieved \(stocks.count) stocks.")
+           // TODO: Do something with stocks...
             }
          }
          ```
-      - (Create/POST) Create a new like on a post
-      - (Delete) Delete existing like
-      - (Create/POST) Create a new comment on a post
-      - (Delete) Delete existing comment
-   - Create Post Screen
-      - (Create/POST) Create a new post object
+   - Search Screen
+      - (Read/GET) Query stock object with name that has been searched
+   - Detail Screen
+      - (Read/GET) Query stock object that has been selected
    - Profile Screen
-      - (Read/GET) Query logged in user object
+      - (Read/GET) Query stocks the user is following
+   - Notification Screen
+      - (Read/GET) Query notifications from user object
       - (Update/PUT) Update user profile image
