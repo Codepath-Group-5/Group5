@@ -88,16 +88,14 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
 ## Schema 
 [This section will be completed in Unit 9]
 ### Models
-#### Post
+#### User
 
 | Property      | Type     | Description |
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the user post (default field) |
-   | author        | Pointer to User| image author |
-   | image         | File     | image that user posts |
-   | caption       | String   | image caption by author |
-   | commentsCount | Number   | number of comments that has been posted to an image |
-   | likesCount    | Number   | number of likes for the post |
+   | profilePicture         | File     | image that user posts |
+   | password      | String   | password for the user   |
+   | stocks       | Array   | array of stocks |
    | createdAt     | DateTime | date when post is created (default field) |
    | updatedAt     | DateTime | date when post is last updated (default field) |
 ### Networking
