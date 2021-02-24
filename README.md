@@ -94,10 +94,10 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
    | ------------- | -------- | ------------|
    | objectId      | String   | unique id for the user post (default field) |
    | profilePicture         | File     | image that user posts |
+   | username      | String | username for the user |
    | password      | String   | password for the user   |
    | stocks       | Array   | array of stocks |
-   | createdAt     | DateTime | date when post is created (default field) |
-   | updatedAt     | DateTime | date when post is last updated (default field) |
+   
 
 ### Networking
 #### List of network requests by screen
@@ -126,4 +126,3 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
       - (Read/GET) Query stocks the user is following
    - Notification Screen
       - (Read/GET) Query notifications from user object
-      - (Update/PUT) Update user profile image
