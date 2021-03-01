@@ -86,7 +86,6 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
 <img src="stockpot_prototype.gif" width=400>
 
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
 #### User
 
@@ -103,26 +102,80 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
 #### List of network requests by screen
    - Login/Register Screen
       - (Read/GET) Query logged in user object
+         ```swift
+          ParseUser.logInInBackground("<userName>", "<password>", (user, e) -> {
+          if (user != null) {
+              // Hooray! The user is logged in.
+          } else {
+              // Login failed. Look at the ParseException to see what happened.
+              Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+          }
+        });
+         ```
       - (Create/POST) Create a new user object
+      ```swift
+         ParseUser user = new ParseUser();
+         user.setUsername("my name");
+         user.setPassword("my pass");
+         user.setEmail("email@example.com");
+         user.signUpInBackground(e -> {
+          if (e == null) {
+              // Hooray! Let them use the app now.
+          } else {
+              // Sign up didn't succeed. Look at the ParseException
+              // to figure out what went wrong
+              Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+          }
+        });
+         ```
    - Home Feed Screen
       - (Read/GET) Query top trending stocks
-         ```swift
-         let query = PFQuery(className:"Stock")
-         query.order(byDescending: "popular")
-         query.findObjectsInBackground { (stocks: [PFObject]?, error: Error?) in
-            if let error = error { 
-               print(error.localizedDescription)
-            } else if let stocks = stocks {
-               print("Successfully retrieved \(stocks.count) stocks.")
-           // TODO: Do something with stocks...
-            }
-         }
-         ```
+        
    - Search Screen
       - (Read/GET) Query stock object with name that has been searched
    - Detail Screen
       - (Read/GET) Query stock object that has been selected
    - Profile Screen
       - (Read/GET) Query stocks the user is following
+       ```swift
+         ParseQuery<Post> query = ParseQuery.getQuery(User.class);
+        query.include(Post.KEY_USER);
+        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        query.addDescendingOrder(User.STOCKS_KEY);
+        query.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> posts, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting posts", e);
+                    return;
+                }
+                for (Post post: posts) {
+                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
+                }
+                allUserStocks.addAll(stocks);
+                adapter.notifyDataSetChanged();
+            }
+        });
+         ```
    - Notification Screen
       - (Read/GET) Query notifications from user object
+      ```swift
+         ParseQuery<Post> query = ParseQuery.getQuery(User.class);
+        query.include(Post.KEY_USER);
+        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        query.addDescendingOrder(User.NOTIFICATIONS_KEY);
+        query.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> posts, ParseException e) {
+                if (e != null) {
+                    Log.e(TAG, "Issue with getting posts", e);
+                    return;
+                }
+                for (Post post: posts) {
+                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
+                }
+                allUserNotifications.addAll(notifications);
+                adapter.notifyDataSetChanged();
+            }
+        });
+         ```
