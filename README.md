@@ -103,7 +103,7 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
    - Login/Register Screen
       - (Read/GET) Query logged in user object
          ```swift
-          ParseUser.logInInBackground("<userName>", "<password>", (user, e) -> {
+            ParseUser.logInInBackground("<userName>", "<password>", (user, e) -> {
              if (user != null) {
                  // Hooray! The user is logged in.
              } else {
@@ -130,19 +130,59 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
           ```
    - Home Feed Screen
       - (Read/GET) Query top trending stocks
-        
    - Search Screen
       - (Read/GET) Query stock object with name that has been searched
+         ```swift
+            AsyncHttpClient client  = new AsyncHttpClient();
+            client.get(URL.format(OVERVIEW, symbol), new JsonHttpResponseHandler() {
+               @Override
+               public void onSuccess(int i, Headers headers, JSON json) {
+                   Log.d(TAG, "onSuccess");
+                   JSONObject jsonObject = json.jsonObject;
+                   try {
+                       stocks.addAll(Stock.fromJsonObject(jsonObject));
+                       stockAdapter.notifyDataSetChanged();
+                   } catch (JSONException e) {
+                       Log.e(TAG, "Hit json exception", e);
+                   }
+               }
+
+               @Override
+               public void onFailure(int i, Headers headers, String s, Throwable throwable) {
+                   Log.d(TAG, "onFailure");
+               }
+           });
+         ```
    - Detail Screen
       - (Read/GET) Query stock object that has been selected
+         ```swift
+            AsyncHttpClient client  = new AsyncHttpClient();
+            client.get(URL.format(OVERVIEW, symbol), new JsonHttpResponseHandler() {
+               @Override
+               public void onSuccess(int i, Headers headers, JSON json) {
+                   Log.d(TAG, "onSuccess");
+                   JSONObject jsonObject = json.jsonObject;
+                   try {
+                       Stock stock = Stock.fromJsonObject(jsonObject);
+                   } catch (JSONException e) {
+                       Log.e(TAG, "Hit json exception", e);
+                   }
+               }
+
+               @Override
+               public void onFailure(int i, Headers headers, String s, Throwable throwable) {
+                   Log.d(TAG, "onFailure");
+               }
+           });
+         ```
    - Profile Screen
       - (Read/GET) Query stocks the user is following
           ```swift
             ParseQuery<Post> query = ParseQuery.getQuery(User.class);
-           query.include(Post.KEY_USER);
-           query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
-           query.addDescendingOrder(User.STOCKS_KEY);
-           query.findInBackground(new FindCallback<Post>() {
+            query.include(Post.KEY_USER);
+            query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+            query.addDescendingOrder(User.STOCKS_KEY);
+            query.findInBackground(new FindCallback<Post>() {
                @Override
                public void done(List<Post> posts, ParseException e) {
                    if (e != null) {
@@ -161,10 +201,10 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
       - (Read/GET) Query notifications from user object
          ```swift
             ParseQuery<Post> query = ParseQuery.getQuery(User.class);
-           query.include(Post.KEY_USER);
-           query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
-           query.addDescendingOrder(User.NOTIFICATIONS_KEY);
-           query.findInBackground(new FindCallback<Post>() {
+            query.include(Post.KEY_USER);
+            query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+            query.addDescendingOrder(User.NOTIFICATIONS_KEY);
+            query.findInBackground(new FindCallback<Post>() {
                @Override
                public void done(List<Post> posts, ParseException e) {
                    if (e != null) {
