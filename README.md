@@ -104,13 +104,13 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
       - (Read/GET) Query logged in user object
          ```swift
           ParseUser.logInInBackground("<userName>", "<password>", (user, e) -> {
-          if (user != null) {
-              // Hooray! The user is logged in.
-          } else {
-              // Login failed. Look at the ParseException to see what happened.
-              Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-          }
-        });
+             if (user != null) {
+                 // Hooray! The user is logged in.
+             } else {
+                 // Login failed. Look at the ParseException to see what happened.
+                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+             }
+          });
          ```
       - (Create/POST) Create a new user object
          ```swift
@@ -127,7 +127,7 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
                  Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
              }
            });
-            ```
+          ```
    - Home Feed Screen
       - (Read/GET) Query top trending stocks
         
@@ -156,7 +156,7 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
                    adapter.notifyDataSetChanged();
                }
            });
-            ```
+          ```
    - Notification Screen
       - (Read/GET) Query notifications from user object
          ```swift
@@ -178,4 +178,4 @@ Tracks stocks, and retrieves data from an API. Allows the user to recieve an ale
                    adapter.notifyDataSetChanged();
                }
            });
-            ```
+          ```
