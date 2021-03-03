@@ -11,7 +11,7 @@ Original App Design Project - README
 
 ## Overview
 ### Description
-Tracks stocks, and retrieves data from an API. Allows the user to recieve an alert when a specific stock hits a certain price.
+Tracks stocks, and retrieves data from an API. Allows the user to receive an alert when a specific stock hits a certain price.
 
 ### App Evaluation
 - **Category:** Finance
