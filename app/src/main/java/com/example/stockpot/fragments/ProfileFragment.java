@@ -20,7 +20,7 @@ import com.example.stockpot.R;
 import com.parse.ParseUser;
 
 public class ProfileFragment extends Fragment {
-    public static final String TAG = "Compose Fragment";
+    public static final String TAG = "Profile Fragment";
     public ProfileFragment() {
         // Required empty public constructor
     }
