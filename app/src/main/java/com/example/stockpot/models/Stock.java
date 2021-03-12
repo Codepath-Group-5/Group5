@@ -36,6 +36,8 @@ public class Stock {
             tickerSym = DEFAULTVAL;
             name = DEFAULTVAL;
         }
+
+
         /*  Company Overview    */
         try{
             tickerSym = jsonObject.getString("Symbol");
@@ -45,6 +47,7 @@ public class Stock {
         catch(Exception e){
             description = DEFAULTVAL;
         }
+
 
         /*  Quote Endpoint  */
         try{

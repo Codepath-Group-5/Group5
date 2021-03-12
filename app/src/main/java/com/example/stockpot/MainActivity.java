@@ -36,11 +36,13 @@ import okhttp3.Headers;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
-    final FragmentManager fragmentManager = getSupportFragmentManager();
-    private BottomNavigationView bottomNavigationView;
     public static final String API_URL = "API HERE";
 
+    final FragmentManager fragmentManager = getSupportFragmentManager();
+    private BottomNavigationView bottomNavigationView;
+
     List<Stock> stocks;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
         //Set Layout manager on Recycler View
         rvStocks.setLayoutManager(new LinearLayoutManager(this));*/
 
+        // Toolbar located below every View
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
+        // Handles switching between screens (above bottomNavigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
@@ -83,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
         bottomNavigationView.setSelectedItemId(R.id.actionHome);
 
        /* AsyncHttpClient client = new AsyncHttpClient();

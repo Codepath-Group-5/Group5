@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         if(ParseUser.getCurrentUser() != null){
             goMainActivity();
         }
@@ -38,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
+
+        // Send a request to login a User from EditText String values
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
                 loginUser(username, password);
             }
         });
+
+        // Send a request to register a User from EditText String values
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,23 +80,27 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    // Used to register a user when they press the register button
     private void registerUser(String username, String password) {
         ParseUser user = new ParseUser();
+
         user.setUsername(username);
         user.setPassword(password);
+
         user.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with register", e);
-                    Toast.makeText(LoginActivity.this, "Issue with register", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Issue with registerUser function", e);
+                    Toast.makeText(LoginActivity.this, "Issue with registering", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Toast.makeText(LoginActivity.this, "Success! You can login now", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Success! You can login now.", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    // Used to transition user to MainActivity if user is logged in
     private void goMainActivity() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);

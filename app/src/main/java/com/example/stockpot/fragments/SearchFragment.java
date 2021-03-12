@@ -32,14 +32,18 @@ import java.util.List;
 import okhttp3.Headers;
 
 public class SearchFragment extends Fragment {
-    public static final String TAG = "Search Fragment";
+    // Used for Debugging Purposes
+    public static final String TAG = "SearchFragment";
+
     private RecyclerView rvStocks;
     private EditText etText;
     private ImageButton btnSearch;
     protected StockAdapter adapter;
     protected List<Stock> allStocks;
 
+    // API Calls with custom ticker symbol (keywords=%s in this case)
     public String API_URL = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=%s&apikey=SECJ8ZBVSYIVN2SK";
+
     public SearchFragment() {
         // Required empty public constructor
     }
@@ -54,40 +58,65 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         rvStocks = view.findViewById(R.id.rvStocks);
         etText = view.findViewById(R.id.etText);
         btnSearch = view.findViewById(R.id.btnSearch);
 
+        // Holds the list of results relating to the search query
         allStocks = new ArrayList<>();
-        adapter = new StockAdapter(getContext(),allStocks);
+
+        adapter = new StockAdapter(getContext(), allStocks);
         rvStocks.setAdapter(adapter);
+
         rvStocks.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        // Send a request to API after user presses the search image button
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Clear the List of stocks when a new query is requested
                 allStocks.clear();
                 String keyWord = etText.getText().toString();
-                Toast.makeText(getContext(), "IT WORKED", Toast.LENGTH_SHORT).show();
+
+                // Toast.makeText(getContext(), "IT WORKED", Toast.LENGTH_SHORT).show();
+
                 queryStocks(keyWord);
             }
         });
     }
+
     protected void queryStocks(String keyWord){
 
         AsyncHttpClient client = new AsyncHttpClient();
-        Log.e(TAG, "THIS IS URL" + String.format(API_URL,keyWord));
-        client.get(String.format(API_URL,keyWord), new JsonHttpResponseHandler() {
+
+        // Debugging to view if the URL is accurate
+        Log.e(TAG, "THIS IS URL" + String.format(API_URL, keyWord));
+
+        // Sends a request to the AlphaVantage API through CodePath's AsyncHttpClient library
+        client.get(String.format(API_URL, keyWord), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Headers headers, JSON json) {
+                // Debug message to view if we entered the function successfully
                 Log.d(TAG,"onSuccess");
+
                 JSONObject jsonObject = json.jsonObject;
+
                 try {
+                    // Holds the JSON results matching the search query (from the Search Endpoint in the API)
+                    // where bestMatches is the JSON object returned
                     JSONArray bestMatches = jsonObject.getJSONArray("bestMatches");
+
+                    // Debug message to view the JSON objects
                     Log.i(TAG, "bestMatches: " + bestMatches.toString());
+
+                    // Add all the results from the JSON objects into the List of Stocks (allStocks)
                     allStocks.addAll(Stock.fromJsonArray(bestMatches));
                     adapter.notifyDataSetChanged();
+
+                    // Debug message: View the # of stocks returned
                     Log.i(TAG, "bestMatches: " + allStocks.size());
+
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception", e);
                     e.printStackTrace();

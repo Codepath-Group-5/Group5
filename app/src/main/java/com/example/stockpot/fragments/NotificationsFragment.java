@@ -10,9 +10,8 @@ import android.view.ViewGroup;
 
 import com.example.stockpot.R;
 
-
 public class NotificationsFragment extends Fragment {
-
+    public static final String TAG = "NotificationsFragment";
 
     public NotificationsFragment() {
         // Required empty public constructor

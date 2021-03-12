@@ -20,11 +20,11 @@ import com.example.stockpot.R;
 import com.parse.ParseUser;
 
 public class ProfileFragment extends Fragment {
-    public static final String TAG = "Profile Fragment";
+    public static final String TAG = "ProfileFragment";
+
     public ProfileFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,9 +57,14 @@ public class ProfileFragment extends Fragment {
 
     private void logoutUser() {
         Log.i(TAG, "Attempting to logout user");
+
+        // Log the user out through Parse
         ParseUser.logOut();
+
+        // Sends the user back to the Login screen
         Intent i = new Intent(getContext(), LoginActivity.class);
         startActivity(i);
-        //finish();
+
+        // finish();
     }
 }
