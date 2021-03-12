@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -49,7 +48,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             tvTicker = itemView.findViewById(R.id.tvTicker);
-            tvName = itemView.findViewById(R.id.tvName);
+            tvName = itemView.findViewById(R.id.tvSymbol);
             tvPrice = itemView.findViewById(R.id.tvPrice);
         }
         public void bind(Stock stock) {
