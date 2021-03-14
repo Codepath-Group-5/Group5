@@ -69,7 +69,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
             tvTicker.setText(stock.getName());
             tvName.setText(stock.getTickerSym());
             tvPrice.setText(stock.getPrice());
-
+            /*
             // 1. Register click listener on the whole row
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -92,6 +92,8 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
 
                 }
             });
+            */
+             
         }
     }
 }
