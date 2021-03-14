@@ -9,10 +9,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.stockpot.LoginActivity;
 import com.example.stockpot.R;
+import com.example.stockpot.fragments.DetailFragment;
 import com.example.stockpot.models.Stock;
 
 import org.parceler.Parcels;
@@ -48,7 +50,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
         return stocks.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         RelativeLayout container;
         private TextView tvTicker;
@@ -72,12 +74,22 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // 2. Navigate to a new activity on tap
-                    Intent i = new Intent(context, LoginActivity.class);
-                    // i.putExtra("title", movie.getTitle());
+                    public class ChangeFragment extends Fragment{
+                        Fragment mFragment = new DetailFragment();
+                        getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame, mFragment)
+                            .commit();
+
+                        // 2. Navigate to a new activity on tap
+                        Intent i = new Intent(context, LoginActivity.class);
+                        // i.putExtra("title", movie.getTitle());
                     i.putExtra("movie", Parcels.wrap(stocks));
                     context.startActivity(i);
-                    // Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }
             });
         }

@@ -3,11 +3,13 @@ package com.example.stockpot.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@Parcel
 public class Stock {
     public static final String DEFAULTVAL = "";
     /*  Search endpoint */
@@ -24,6 +26,9 @@ public class Stock {
     String change;
     String changePercent;
 
+    public Stock() {
+
+    }
 
 
     public Stock(JSONObject jsonObject) throws JSONException {
