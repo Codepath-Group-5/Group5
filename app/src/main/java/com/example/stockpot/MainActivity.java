@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new HomeFragment();
                         break;
                     case R.id.actionSearch:
-                        fragment = new SearchFragment();
+                        fragment = new SearchFragment(MainActivity.this);
                         break;
                     case R.id.actionMessages:
                         fragment = new MessagesFragment();

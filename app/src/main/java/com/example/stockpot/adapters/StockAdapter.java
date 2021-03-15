@@ -2,23 +2,22 @@ package com.example.stockpot.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.stockpot.LoginActivity;
+import com.example.stockpot.MainActivity;
 import com.example.stockpot.R;
-import com.example.stockpot.fragments.DetailFragment;
+import com.example.stockpot.StockDetailActivity;
 import com.example.stockpot.models.Stock;
 
 import org.parceler.Parcels;
@@ -74,6 +73,8 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
         private TextView tvTicker;
         private TextView tvName;
         private TextView tvPrice;
+        private ImageButton btnAddToWatchList;
+        private CheckBox checkBoxAddToWatchList;
 
         // RelativeLayout rootView;//newly added field
 
@@ -86,6 +87,37 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
             tvName = itemView.findViewById(R.id.tvSymbol);
             tvPrice = itemView.findViewById(R.id.tvPrice);
             container = itemView.findViewById(R.id.container);
+            // btnAddToWatchList = itemView.findViewById(R.id.btnAddToWatchList);
+            checkBoxAddToWatchList = itemView.findViewById(R.id.checkBoxAddToWatchList);
+
+            View.OnClickListener checkBoxHandler = new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    if (checkBoxAddToWatchList.isChecked())
+                    {
+                        // checkBoxAddToWatchList.setChecked(false);
+                        Toast.makeText(context, "Checkbox has been checked!", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        // checkBoxAddToWatchList.setChecked(true);
+                        Toast.makeText(context, "Checkbox has been UNchecked!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            };
+
+            /*
+            View.OnClickListener imgButtonHandler = new View.OnClickListener() {
+
+                public void onClick(View v) {
+                    btnAddToWatchList.setBackgroundResource(R.drawable.ufi_save);
+                }
+            };
+
+            btnAddToWatchList.setOnClickListener(imgButtonHandler);
+
+             */
+            checkBoxAddToWatchList.setOnClickListener(checkBoxHandler);
         }
 
 
@@ -95,28 +127,32 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
             tvName.setText(stock.getTickerSym());
             tvPrice.setText(stock.getPrice());
 
+
+
+
             // 1. Register click listener on the whole row
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+
+                    Intent intent = new Intent(context, StockDetailActivity.class);
+                    intent.putExtra("stock", Parcels.wrap(stock));
+                    Log.i("StockDetailActivty", "Going to StockDetailActivity from StockAdapter");
+                    context.startActivity(intent);
+
                     // public class ChangeFragment extends Fragment{
                     //     FragmentManager fm = getFragmentManager();
                     //     FragmentTransaction ft = fm.beginTransaction();
                         // FragmentGreen llf = new FragmentGreen();
                         // ft.replace(R.id.listFragment, DetailFragment);
                         // ft.commit();
-                        /*
-                        getSupportFragmentManager()
+                    /*
+                        context.getSupportFragmentManager()
                             .beginTransaction()
                             .replace(R.id.content_frame, mFragment)
                             .commit();
-                        */
-
-                        // 2. Navigate to a new activity on tap
-                        // Intent i = new Intent(context, LoginActivity.class);
-                        // i.putExtra("title", movie.getTitle());
-                    // i.putExtra("movie", Parcels.wrap(stocks));
-                    // context.startActivity(i);
+                    */
                         // Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
                     }
 

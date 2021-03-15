@@ -1,5 +1,6 @@
 package com.example.stockpot.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -32,20 +33,29 @@ import java.util.List;
 import okhttp3.Headers;
 
 public class SearchFragment extends Fragment {
+
     // Used for Debugging Purposes
     public static final String TAG = "SearchFragment";
 
     private RecyclerView rvStocks;
     private EditText etText;
     private ImageButton btnSearch;
+
     protected StockAdapter adapter;
     protected List<Stock> allStocks;
+
+    protected Context currentContext;
 
     // API Calls with custom ticker symbol (keywords=%s in this case)
     public String API_URL = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=%s&apikey=SECJ8ZBVSYIVN2SK";
 
     public SearchFragment() {
         // Required empty public constructor
+    }
+
+    public SearchFragment(Context context) {
+        // Required empty public constructor
+        currentContext = context;
     }
 
     @Override

@@ -26,8 +26,8 @@ public class Stock {
     String change;
     String changePercent;
 
+    // empty constructor needed by the Parceler library
     public Stock() {
-
     }
 
 
