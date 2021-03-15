@@ -7,7 +7,9 @@
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+
+    >
 
     <TextView
         android:id="@+id/tvTitle"
@@ -34,19 +36,27 @@
         android:layout_weight="1"
         android:ems="10"
         android:hint="password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:text="Login"
+        android:textColor="@color/white"
+        android:background="#133E7C"
+        />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Register" />
+        android:text="Register"
+        android:textColor="@color/white"
+        android:background="#711C91"
+        android:layout_marginTop="10dp"
+        />
 
 </LinearLayout>
