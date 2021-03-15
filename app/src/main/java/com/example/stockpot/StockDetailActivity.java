@@ -22,26 +22,27 @@ public class StockDetailActivity extends AppCompatActivity {
     TextView tvDescription;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stockdetail);
 
-        tvSymbol = findViewById(R.id.tvSymbolStockDetail);
+        tvSymbol = findViewById(R.id.tvSymbol);
         tvName = findViewById(R.id.tvName);
         tvDescription = findViewById(R.id.tvDescription);
-        Log.i("StockDetailActivity", "Test");
+        Log.i(TAG, "Test");
         displayStockDetails();
 
     }
 
     public void displayStockDetails() {
+        Log.i("StockDetailActivity", "displayStockDetails");
         Stock stock = (Stock) Parcels.unwrap(getIntent().getParcelableExtra("stock"));
 
         tvSymbol.setText(stock.getTickerSym());
         // tvName.setText(stock.getName());
         // tvDescription.setText(stock.getDescription());
         Toast.makeText(StockDetailActivity.this, stock.getName(), Toast.LENGTH_SHORT).show();
-        Log.i("StockDetailActivity", stock.getName());
+        Log.i(TAG, stock.getName());
     }
 
 }
