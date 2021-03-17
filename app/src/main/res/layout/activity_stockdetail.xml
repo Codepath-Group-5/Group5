@@ -32,11 +32,12 @@
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_below="@+id/tvName"
         android:layout_alignParentStart="true"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
+        android:scrollbars="vertical"
         android:text="International Business Machines Corporation provides integrated solutions and services worldwide. Its Cloud Cognitive Software segment offers software for vertical and domain-specific solutions in health, financial services, supply chain, and asset management, weather, and security software and services application areas; and customer information control system and storage, and analytics and integration software solutions to support client mission critical on-premise workloads in banking, airline, and retail industries. It also offers middleware and data platform software, including Red Hat that enables the opera" />
 
     <TextView

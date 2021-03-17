@@ -67,8 +67,6 @@ public class StockDetailActivity extends AppCompatActivity {
         tvPrice = findViewById(R.id.tvPrice);
         tvVolume = findViewById(R.id.tvVolume);
 
-
-
         displayStockDetails();
     }
 
@@ -78,29 +76,35 @@ public class StockDetailActivity extends AppCompatActivity {
         symbol = stock.getTickerSym();
 
         getQuoteStock();
-        //getOverviewStock();
+        getOverviewStock();
 
         tvSymbol.setText(stock.getTickerSym());
         tvName.setText(stock.getName());
-        //tvDescription.setText(overviewStock.getDescription());
-
-        tvOpen.setText(quoteStock.getOpen());
-        tvHigh.setText(quoteStock.getHigh());
-        tvLow.setText(quoteStock.getLow());
-        //tvWkhigh.setText(overviewStock.getWkHigh());
-        //tvWklow.setText(overviewStock.getWkLow());
-        tvChange.setText(quoteStock.getChange());
-        tvChangePercent.setText(quoteStock.getChangePercent());
-        tvPrice.setText(quoteStock.getPrice());
-        tvVolume.setText(quoteStock.getVolume());
 
         Toast.makeText(StockDetailActivity.this, stock.getName(), Toast.LENGTH_SHORT).show();
         Log.i(TAG, stock.getName());
     }
 
+    private void displayQuoteInfo() {
+        tvOpen.setText(quoteStock.getOpen());
+        tvHigh.setText(quoteStock.getHigh());
+        tvLow.setText(quoteStock.getLow());
+        tvChange.setText(quoteStock.getChange());
+        tvChangePercent.setText(quoteStock.getChangePercent());
+        tvPrice.setText(quoteStock.getPrice());
+        tvVolume.setText(quoteStock.getVolume());
+    }
+
+    private void displayOverviewInfo() {
+        tvDescription.setText(overviewStock.getDescription());
+        tvWkhigh.setText(overviewStock.getWkHigh());
+        tvWklow.setText(overviewStock.getWkLow());
+    }
+
     private void getOverviewStock() {
         AsyncHttpClient client = new AsyncHttpClient();
         // Sends a request to the AlphaVantage API through CodePath's AsyncHttpClient library
+        Log.d(TAG, String.format(API_URL, "OVERVIEW", symbol));
         client.get(String.format(API_URL, "OVERVIEW", symbol), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Headers headers, JSON json) {
@@ -110,6 +114,7 @@ public class StockDetailActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = json.jsonObject;
                     overviewStock = new Stock(jsonObject);
+                    displayOverviewInfo();
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception", e);
                     e.printStackTrace();
@@ -125,6 +130,7 @@ public class StockDetailActivity extends AppCompatActivity {
 
     private void getQuoteStock() {
         AsyncHttpClient client = new AsyncHttpClient();
+
         // Sends a request to the AlphaVantage API through CodePath's AsyncHttpClient library
         Log.i(TAG, String.format(API_URL, "GLOBAL_QUOTE", symbol));
         client.get(String.format(API_URL, "GLOBAL_QUOTE", symbol), new JsonHttpResponseHandler() {
@@ -136,6 +142,7 @@ public class StockDetailActivity extends AppCompatActivity {
                     JSONObject jsonObject = json.jsonObject;
                     JSONObject quote = jsonObject.getJSONObject("Global Quote");
                     quoteStock = new Stock(quote);
+                    displayQuoteInfo();
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception", e);
                     e.printStackTrace();
@@ -144,7 +151,7 @@ public class StockDetailActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int i, Headers headers, String s, Throwable throwable) {
-                Log.d(TAG, "onFailure");
+                Log.d(TAG, "onFailure" + " " + s);
             }
         });
     }

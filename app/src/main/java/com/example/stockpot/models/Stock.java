@@ -135,7 +135,13 @@ public class Stock {
         return low;
     }
 
+    public String getWkHigh() {
+        return wkHigh;
+    }
 
+    public String getWkLow() {
+        return wkLow;
+    }
 
     public void setName(String name) {
         this.name = name;
