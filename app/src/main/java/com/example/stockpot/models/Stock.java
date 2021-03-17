@@ -17,9 +17,12 @@ public class Stock {
     String tickerSym;
     /*  Company Overview    */
     String description;
+    String wkHigh;
+    String wkLow;
     /*  Quote Endpoint  */
     String open;
     String high;
+    String low;
     String price;
     String volume;
     String previousClose;
@@ -48,6 +51,8 @@ public class Stock {
             tickerSym = jsonObject.getString("Symbol");
             name = jsonObject.getString("Name");
             description = jsonObject.getString("Description");
+            wkHigh = jsonObject.getString("52WeekHigh");
+            wkLow = jsonObject.getString("52WeekLow");
         }
         catch(Exception e){
             description = DEFAULTVAL;
@@ -59,6 +64,7 @@ public class Stock {
             tickerSym = jsonObject.getString("01. symbol");
             open = jsonObject.getString("02. open");
             high = jsonObject.getString("03. high");
+            low = jsonObject.getString("04. low");
             price = jsonObject.getString("05. price");
             volume = jsonObject.getString("06. volume");
             previousClose = jsonObject.getString("08. previous close");
@@ -125,6 +131,12 @@ public class Stock {
         return change;
     }
 
+    public String getLow() {
+        return low;
+    }
+
+
+
     public void setName(String name) {
         this.name = name;
     }
@@ -164,4 +176,5 @@ public class Stock {
     public void setChangePercent(String changePercent) {
         this.changePercent = changePercent;
     }
+
 }
