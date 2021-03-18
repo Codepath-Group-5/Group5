@@ -19,9 +19,11 @@ import com.example.stockpot.MainActivity;
 import com.example.stockpot.R;
 import com.example.stockpot.StockDetailActivity;
 import com.example.stockpot.models.Stock;
+import com.parse.ParseUser;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
@@ -90,22 +92,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
             // btnAddToWatchList = itemView.findViewById(R.id.btnAddToWatchList);
             checkBoxAddToWatchList = itemView.findViewById(R.id.checkBoxAddToWatchList);
 
-            View.OnClickListener checkBoxHandler = new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    if (checkBoxAddToWatchList.isChecked())
-                    {
-                        // checkBoxAddToWatchList.setChecked(false);
-                        Toast.makeText(context, "Checkbox has been checked!", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        // checkBoxAddToWatchList.setChecked(true);
-                        Toast.makeText(context, "Checkbox has been UNchecked!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            };
-
             /*
             View.OnClickListener imgButtonHandler = new View.OnClickListener() {
 
@@ -117,7 +103,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
             btnAddToWatchList.setOnClickListener(imgButtonHandler);
 
              */
-            checkBoxAddToWatchList.setOnClickListener(checkBoxHandler);
         }
 
 
@@ -160,7 +145,42 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
                 //}
             });
 
+            checkBoxAddToWatchList.setOnClickListener(new View.OnClickListener() {
 
+                @Override
+                public void onClick(View view) {
+                    ParseUser user = ParseUser.getCurrentUser();
+                    final String KEY = "stocks";
+                    String stockSym = stock.getTickerSym();
+
+                    if (checkBoxAddToWatchList.isChecked())
+                    {
+                        // checkBoxAddToWatchList.setChecked(false);
+                        Toast.makeText(context, "Stock followed!", Toast.LENGTH_SHORT).show();
+
+                        user.addUnique(KEY, stockSym);
+                        Log.i(TAG, String.format("Adding %s to stocks list", stockSym));
+                    }
+                    else {
+                        // checkBoxAddToWatchList.setChecked(true);
+                        Toast.makeText(context, "Stock Unfollowed!", Toast.LENGTH_SHORT).show();
+
+                        List<String> toRemove = new ArrayList<>();
+                        toRemove.add(stockSym);
+                        user.removeAll(KEY, toRemove);
+                    }
+                    // Saves the object
+                    user.saveInBackground(e -> {
+                        if (e==null) {
+                            // Save successfull
+                            Log.i(TAG, String.format("Successfully saved %s to stocks list", stockSym));
+                        } else {
+                            // Something went wrong while saving
+                            Log.i(TAG, String.format("Failed to save %s to stocks list", stockSym));
+                        }
+                    });
+                }
+            });
         }
     }
 }
