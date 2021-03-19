@@ -8,9 +8,9 @@
         android:title="Home"
         app:showAsAction="always" />
     <item
-        android:id="@+id/actionNotifications"
-        android:icon="@android:drawable/stat_notify_error"
-        android:title="Notifications"
+        android:id="@+id/actionCompose"
+        android:icon="@drawable/instagram_new_post_outline_24"
+        android:title="Compose"
         app:showAsAction="always" />
     <item
         android:id="@+id/actionSearch"

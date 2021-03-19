@@ -101,7 +101,7 @@ public class SearchFragment extends Fragment {
         AsyncHttpClient client = new AsyncHttpClient();
 
         // Debugging to view if the URL is accurate
-        Log.e(TAG, "THIS IS URL" + String.format(API_URL, keyWord));
+        Log.i(TAG, "THIS IS URL " + String.format(API_URL, keyWord));
 
         // Sends a request to the AlphaVantage API through CodePath's AsyncHttpClient library
         client.get(String.format(API_URL, keyWord), new JsonHttpResponseHandler() {

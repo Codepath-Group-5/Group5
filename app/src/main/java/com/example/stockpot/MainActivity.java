@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -14,26 +13,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.MenuItem;
 
-import com.codepath.asynchttpclient.AsyncHttpClient;
-import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
-import com.example.stockpot.adapters.StockAdapter;
 import com.example.stockpot.fragments.HomeFragment;
 import com.example.stockpot.fragments.MessagesFragment;
-import com.example.stockpot.fragments.NotificationsFragment;
+import com.example.stockpot.fragments.ComposeFragment;
 import com.example.stockpot.fragments.ProfileFragment;
 import com.example.stockpot.fragments.SearchFragment;
 import com.example.stockpot.models.Stock;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.Headers;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -88,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.actionMessages:
                         fragment = new MessagesFragment();
                         break;
-                    case R.id.actionNotifications:
-                        fragment = new NotificationsFragment();
+                    case R.id.actionCompose:
+                        fragment = new ComposeFragment();
                         break;
                     case R.id.actionProfile:
                     default:
