@@ -2,14 +2,16 @@ package com.example.stockpot;
 
 import android.app.Application;
 
+import com.example.stockpot.models.Post;
 import com.parse.Parse;
+import com.parse.ParseObject;
 
 public class ParseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
 
-        // ParseObject.registerSubclass(Post.class);
+        ParseObject.registerSubclass(Post.class);
 
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("QbGXYqZf40QoZsTFapHmjLerwpflADIXAjNl2R8e")
