@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -50,6 +52,16 @@ public class StockDetailActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stockdetail);
+
+        // Find the toolbar view inside the activity layout
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Make sure the toolbar exists in the activity and is not null
+        setSupportActionBar(toolbar);
+        // Remove default title text
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        // Get access to the custom title view
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
 
         tvSymbol = findViewById(R.id.tvSymbol);
         tvName = findViewById(R.id.tvName);
@@ -154,6 +166,14 @@ public class StockDetailActivity extends AppCompatActivity {
                 Log.d(TAG, "onFailure" + " " + s);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        return true;
     }
 
 }

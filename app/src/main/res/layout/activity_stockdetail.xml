@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="?attr/colorPrimary"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="STOCKPOT"
+            android:layout_gravity="center"
+            android:id="@+id/toolbar_title"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    >
 
     <TextView
         android:id="@+id/tvSymbol"
@@ -16,7 +48,10 @@
         android:text="$TSLA"
         android:textSize="24sp"
         tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="12dp" />
+        tools:layout_editor_absoluteY="12dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/tvName"
@@ -27,7 +62,10 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:text="Tesla"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/tvDescription"
@@ -38,7 +76,10 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:scrollbars="vertical"
-        android:text="International Business Machines Corporation provides integrated solutions and services worldwide. Its Cloud Cognitive Software segment offers software for vertical and domain-specific solutions in health, financial services, supply chain, and asset management, weather, and security software and services application areas; and customer information control system and storage, and analytics and integration software solutions to support client mission critical on-premise workloads in banking, airline, and retail industries. It also offers middleware and data platform software, including Red Hat that enables the opera" />
+        android:text="International Business Machines Corporation provides integrated solutions and services worldwide. Its Cloud Cognitive Software segment offers software for vertical and domain-specific solutions in health, financial services, supply chain, and asset management, weather, and security software and services application areas; and customer information control system and storage, and analytics and integration software solutions to support client mission critical on-premise workloads in banking, airline, and retail industries. It also offers middleware and data platform software, including Red Hat that enables the opera"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/open"
@@ -48,7 +89,10 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:text="Open:" />
+        android:text="Open:"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/high"
@@ -58,7 +102,10 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:text="High:" />
+        android:text="High:"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/low"
@@ -69,7 +116,10 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:text="Low:" />
+        android:text="Low:"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/wkhigh52"
@@ -79,7 +129,10 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:text="52 Week High:" />
+        android:text="52 Week High:"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/wklow52"
@@ -89,7 +142,10 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:text="52 Week Low:" />
+        android:text="52 Week Low:"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/tvOpen"
@@ -99,7 +155,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="15dp"
         android:layout_toEndOf="@+id/open"
-        android:text="12232" />
+        android:text="12232"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:id="@+id/tvHigh"
@@ -109,7 +167,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/high"
-        android:text="1233" />
+        android:text="1233"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:id="@+id/tvLow"
@@ -119,7 +179,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/low"
-        android:text="12321" />
+        android:text="12321"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:id="@+id/tvWkhigh"
@@ -130,7 +192,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/wkhigh52"
-        android:text="123213" />
+        android:text="123213"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:id="@+id/tvWkLow"
@@ -140,7 +204,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/wklow52"
-        android:text="13213" />
+        android:text="13213"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:id="@+id/volume"
@@ -150,7 +216,10 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:text="Volume:" />
+        android:text="Volume:"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/change"
@@ -160,7 +229,10 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:text="Change:" />
+        android:text="Change:"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/changepercent"
@@ -170,7 +242,10 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:text="Change %: " />
+        android:text="Change %: "
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/tvPrice"
@@ -181,7 +256,9 @@
         android:layout_marginTop="18dp"
         android:layout_toEndOf="@+id/tvSymbol"
         android:text="$35.93"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:id="@+id/tvVolume"
@@ -191,7 +268,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/volume"
-        android:text="12321321" />
+        android:text="12321321"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:id="@+id/tvChange"
@@ -201,7 +280,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/change"
-        android:text="-0.73" />
+        android:text="-0.73"
+        android:textColor="@color/white"
+        />
 
     <TextView
         android:id="@+id/tvChangePercent"
@@ -211,6 +292,10 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/changepercent"
-        android:text="-0.579%" />
+        android:text="-0.579%"
+        android:textColor="@color/white"
+        />
 
 </RelativeLayout>
+
+</LinearLayout>
