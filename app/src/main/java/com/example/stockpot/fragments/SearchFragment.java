@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
@@ -69,6 +70,8 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ProgressBar pb = (ProgressBar) view.findViewById(R.id.pbLoading);
+
         rvStocks = view.findViewById(R.id.rvStocks);
         etText = view.findViewById(R.id.etText);
         btnSearch = view.findViewById(R.id.btnSearch);
@@ -85,6 +88,13 @@ public class SearchFragment extends Fragment {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // on some click or some loading we need to wait for...
+
+                pb.setVisibility(ProgressBar.VISIBLE);
+
+
+
                 // Clear the List of stocks when a new query is requested
                 allStocks.clear();
                 String keyWord = etText.getText().toString();
@@ -92,6 +102,9 @@ public class SearchFragment extends Fragment {
                 // Toast.makeText(getContext(), "IT WORKED", Toast.LENGTH_SHORT).show();
 
                 queryStocks(keyWord);
+
+                // run a background job and once complete
+                pb.setVisibility(ProgressBar.INVISIBLE);
             }
         });
     }
@@ -131,6 +144,7 @@ public class SearchFragment extends Fragment {
                     Log.e(TAG, "Hit json exception", e);
                     e.printStackTrace();
                 }
+
             }
 
             @Override

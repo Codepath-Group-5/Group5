@@ -2,12 +2,14 @@ package com.example.stockpot.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +33,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
 
     private Context context;
     private List<Stock> stocks;
+
     
     public StockAdapter(Context context, List<Stock> stocks){
         this.context = context;
@@ -98,6 +101,8 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
             // btnAddToWatchList = itemView.findViewById(R.id.btnAddToWatchList);
             checkBoxAddToWatchList = itemView.findViewById(R.id.checkBoxAddToWatchList);
 
+
+
             /*
             View.OnClickListener imgButtonHandler = new View.OnClickListener() {
 
@@ -127,10 +132,14 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
                 public void onClick(View view) {
 
 
+
+
                     Intent intent = new Intent(context, StockDetailActivity.class);
                     intent.putExtra("stock", Parcels.wrap(stock));
+
                     Log.i("StockDetailActivty", "Going to StockDetailActivity from StockAdapter");
                     context.startActivity(intent);
+
 
                     // public class ChangeFragment extends Fragment{
                     //     FragmentManager fm = getFragmentManager();
@@ -177,7 +186,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
                     }
                     // Saves the object
                     user.saveInBackground(e -> {
-                        if (e==null) {
+                        if (e == null) {
                             // Save successfull
                             Log.i(TAG, String.format("Successfully saved %s to stocks list", stockSym));
                         } else {
