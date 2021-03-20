@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.stockpot.fragments.HomeFragment;
-import com.example.stockpot.fragments.MessagesFragment;
 import com.example.stockpot.fragments.ComposeFragment;
 import com.example.stockpot.fragments.ProfileFragment;
 import com.example.stockpot.fragments.SearchFragment;
