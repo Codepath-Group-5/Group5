@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,6 +35,8 @@ public class HomeFragment extends Fragment {
 
     private EndlessRecyclerViewScrollListener scrollListener;
 
+    private SwipeRefreshLayout swipeContainer;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -48,6 +51,24 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                fetchTimelineAsync(0);
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         posts = new ArrayList<>();
         rvPosts = view.findViewById(R.id.rvPosts);
@@ -94,6 +115,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void queryPosts() {
+        adapter.clear();
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
         query.setLimit(20);
@@ -110,7 +132,13 @@ public class HomeFragment extends Fragment {
                 }
                 posts.addAll(p);
                 adapter.notifyDataSetChanged();
+                swipeContainer.setRefreshing(false);
             }
         });
+    }
+
+    public void fetchTimelineAsync(int page) {
+        // Toast.makeText(getContext(), "Made it to fetchTimelineAsync!", Toast.LENGTH_SHORT).show();
+        queryPosts();
     }
 }

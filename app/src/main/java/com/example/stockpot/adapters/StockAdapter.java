@@ -69,6 +69,12 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
         return stocks.size();
     }
 
+    // Clean all elements of the recycler
+    public void clear() {
+        stocks.clear();
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         RelativeLayout container;
