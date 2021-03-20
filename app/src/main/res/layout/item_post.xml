@@ -8,14 +8,47 @@
     android:layout_margin="8dp"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvUsername"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="Trent" />
+        android:orientation="horizontal"
+        android:layout_height="30dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="30dp"
+            >
+
+            <TextView
+                android:id="@+id/tvUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Dennis"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/media_option_button" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="30dp"
+            >
+
+        </LinearLayout>
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/ivImage"
@@ -24,6 +57,66 @@
         android:layout_weight="1"
         android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="25dp"
+        android:layout_marginTop="5dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="25dp"
+            >
+            <ImageButton
+                android:id="@+id/btnHeart"
+                android:background="@null"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ufi_heart_icon" />
+
+            <ImageButton
+                android:id="@+id/btnChat"
+                android:background="@null"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ufi_comment" />
+
+
+            <ImageButton
+                android:id="@+id/btnShare"
+                android:background="@null"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/direct" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="25dp"
+            >
+
+            <ImageButton
+                android:id="@+id/btnSave"
+                android:layout_width="22dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="200dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ufi_save_active" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvDescription"
