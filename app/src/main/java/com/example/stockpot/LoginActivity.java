@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "OnClick login button");
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 loginUser(username, password);
@@ -78,18 +77,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void loginUser(String username, String password) {
-        Log.i(TAG, "Attempting to login user " + username);
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if (e != null) {
-                    // TODO: better error handling
-                    Toast.makeText(com.example.stockpot.LoginActivity.this, "Issue with login!", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Issue with login", e);
                     return;
                 }
                 goMainActivity();
-                Toast.makeText(com.example.stockpot.LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -105,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void done(ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with registerUser function", e);
                     Toast.makeText(LoginActivity.this, "Issue with registering", Toast.LENGTH_SHORT).show();
                     return;
                 }

@@ -116,16 +116,9 @@ public class ProfileFragment extends Fragment {
                         // Holds the JSON results matching the search query (from the Search Endpoint in the API)
                         // where bestMatches is the JSON object returned
                         JSONArray bestMatches = jsonObject.getJSONArray("bestMatches");
-
-                        // Debug message to view the JSON objects
-                        Log.i(TAG, "bestMatches: " + bestMatches.toString());
-
                         // Add first result (best match) from the JSON objects into the List of Stocks (stockList)
                         stockList.add(new Stock(bestMatches.getJSONObject(0)));
                         adapter.notifyDataSetChanged();
-
-                        // Debug message: View the # of stocks returned
-                        Log.i(TAG, "bestMatches: " + stockList.size());
                     } catch (JSONException e) {
                         Log.e(TAG, "Hit json exception", e);
                         e.printStackTrace();
@@ -141,15 +134,11 @@ public class ProfileFragment extends Fragment {
     }
 
     private void logoutUser() {
-        Log.i(TAG, "Attempting to logout user");
-
         // Log the user out through Parse
         ParseUser.logOut();
 
         // Sends the user back to the Login screen
         Intent i = new Intent(getContext(), LoginActivity.class);
         startActivity(i);
-
-        // finish();
     }
 }

@@ -37,9 +37,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
         this.stocks = stocks;
     }
 
-
-
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -106,18 +103,11 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
             container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-
-
-
                     Intent intent = new Intent(context, StockDetailActivity.class);
                     intent.putExtra("stock", Parcels.wrap(stock));
 
-                    Log.i("StockDetailActivity", "Going to StockDetailActivity from StockAdapter");
                     context.startActivity(intent);
                     }
-
-
 
             });
 
@@ -131,16 +121,11 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
 
                     if (checkBoxAddToWatchList.isChecked())
                     {
-                        // checkBoxAddToWatchList.setChecked(false);
                         Toast.makeText(context, "Stock followed!", Toast.LENGTH_SHORT).show();
-
                         user.addUnique(KEY, stockSym);
-                        Log.i(TAG, String.format("Adding %s to stocks list", stockSym));
                     }
                     else {
-                        // checkBoxAddToWatchList.setChecked(true);
                         Toast.makeText(context, "Stock Unfollowed!", Toast.LENGTH_SHORT).show();
-
                         List<String> toRemove = new ArrayList<>();
                         toRemove.add(stockSym);
                         user.removeAll(KEY, toRemove);

@@ -131,9 +131,6 @@ public class SearchFragment extends Fragment {
 
         AsyncHttpClient client = new AsyncHttpClient();
 
-        // Debugging to view if the URL is accurate
-        Log.i(TAG, "THIS IS URL " + String.format(API_URL, keyWord));
-
         // Sends a request to the AlphaVantage API through CodePath's AsyncHttpClient library
         client.get(String.format(API_URL, keyWord), new JsonHttpResponseHandler() {
             @Override
@@ -148,15 +145,9 @@ public class SearchFragment extends Fragment {
                     // where bestMatches is the JSON object returned
                     JSONArray bestMatches = jsonObject.getJSONArray("bestMatches");
 
-                    // Debug message to view the JSON objects
-                    Log.i(TAG, "bestMatches: " + bestMatches.toString());
-
                     // Add all the results from the JSON objects into the List of Stocks (allStocks)
                     allStocks.addAll(Stock.fromJsonArray(bestMatches));
                     adapter.notifyDataSetChanged();
-
-                    // Debug message: View the # of stocks returned
-                    Log.i(TAG, "bestMatches: " + allStocks.size());
 
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit json exception", e);

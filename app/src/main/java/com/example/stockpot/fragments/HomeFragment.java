@@ -138,7 +138,6 @@ public class HomeFragment extends Fragment {
     }
 
     public void fetchTimelineAsync(int page) {
-        // Toast.makeText(getContext(), "Made it to fetchTimelineAsync!", Toast.LENGTH_SHORT).show();
         queryPosts();
     }
 }

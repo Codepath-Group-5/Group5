@@ -80,7 +80,6 @@ public class StockDetailActivity extends AppCompatActivity {
     }
 
     private void displayStockDetails() {
-        Log.i("StockDetailActivity", "displayStockDetails");
         Stock stock = (Stock) Parcels.unwrap(getIntent().getParcelableExtra("stock"));
         symbol = stock.getTickerSym();
 
@@ -113,7 +112,6 @@ public class StockDetailActivity extends AppCompatActivity {
     private void getOverviewStock() {
         AsyncHttpClient client = new AsyncHttpClient();
         // Sends a request to the AlphaVantage API through CodePath's AsyncHttpClient library
-        Log.d(TAG, String.format(API_URL, "OVERVIEW", symbol));
         client.get(String.format(API_URL, "OVERVIEW", symbol), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Headers headers, JSON json) {
@@ -141,12 +139,10 @@ public class StockDetailActivity extends AppCompatActivity {
         AsyncHttpClient client = new AsyncHttpClient();
 
         // Sends a request to the AlphaVantage API through CodePath's AsyncHttpClient library
-        Log.i(TAG, String.format(API_URL, "GLOBAL_QUOTE", symbol));
         client.get(String.format(API_URL, "GLOBAL_QUOTE", symbol), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Headers headers, JSON json) {
                 // Debug message to view if we entered the function successfully
-                Log.d(TAG,"onSuccess");
                 try {
                     JSONObject jsonObject = json.jsonObject;
                     JSONObject quote = jsonObject.getJSONObject("Global Quote");
