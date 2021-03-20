@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Parcel

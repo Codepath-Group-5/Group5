@@ -53,5 +53,4 @@ dependencies {
     // Messaging Implementation from https://guides.codepath.org/android/Building-Simple-Chat-Client-with-Parse
     implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.24.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1' // for logging API calls to LogCat
-    implementation "androidx.activity:activity:1.2.1"
 }

@@ -24,7 +24,6 @@ import com.example.stockpot.LoginActivity;
 import com.example.stockpot.R;
 import com.example.stockpot.adapters.StockAdapter;
 import com.example.stockpot.models.Stock;
-import com.example.stockpot.models.User;
 import com.parse.ParseUser;
 
 import org.json.JSONArray;

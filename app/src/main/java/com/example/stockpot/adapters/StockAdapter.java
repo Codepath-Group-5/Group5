@@ -2,14 +2,12 @@ package com.example.stockpot.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,7 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.stockpot.MainActivity;
 import com.example.stockpot.R;
 import com.example.stockpot.StockDetailActivity;
 import com.example.stockpot.models.Stock;
@@ -57,12 +54,10 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
 
         if(position % 2 == 0)
         {
-            //holder.rootView.setBackgroundColor(Color.BLACK);
             holder.container.setBackgroundResource(R.color.primary);
         }
         else
         {
-            //holder.rootView.setBackgroundColor(Color.WHITE);
             holder.container.setBackgroundResource(R.color.secondary);
         }
     }
@@ -87,33 +82,14 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
         private ImageButton btnAddToWatchList;
         private CheckBox checkBoxAddToWatchList;
 
-        // RelativeLayout rootView;//newly added field
-
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-
-            // rootView = (RelativeLayout) itemView.findViewById(R.id.container);
 
             tvTicker = itemView.findViewById(R.id.tvTicker);
             tvName = itemView.findViewById(R.id.tvSymbol);
             tvPrice = itemView.findViewById(R.id.tvPrice);
             container = itemView.findViewById(R.id.container);
-            // btnAddToWatchList = itemView.findViewById(R.id.btnAddToWatchList);
             checkBoxAddToWatchList = itemView.findViewById(R.id.checkBoxAddToWatchList);
-
-
-
-            /*
-            View.OnClickListener imgButtonHandler = new View.OnClickListener() {
-
-                public void onClick(View v) {
-                    btnAddToWatchList.setBackgroundResource(R.drawable.ufi_save);
-                }
-            };
-
-            btnAddToWatchList.setOnClickListener(imgButtonHandler);
-
-             */
         }
 
 
@@ -137,27 +113,12 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>{
                     Intent intent = new Intent(context, StockDetailActivity.class);
                     intent.putExtra("stock", Parcels.wrap(stock));
 
-                    Log.i("StockDetailActivty", "Going to StockDetailActivity from StockAdapter");
+                    Log.i("StockDetailActivity", "Going to StockDetailActivity from StockAdapter");
                     context.startActivity(intent);
-
-
-                    // public class ChangeFragment extends Fragment{
-                    //     FragmentManager fm = getFragmentManager();
-                    //     FragmentTransaction ft = fm.beginTransaction();
-                        // FragmentGreen llf = new FragmentGreen();
-                        // ft.replace(R.id.listFragment, DetailFragment);
-                        // ft.commit();
-                    /*
-                        context.getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.content_frame, mFragment)
-                            .commit();
-                    */
-                        // Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
                     }
 
 
-                //}
+
             });
 
             checkBoxAddToWatchList.setOnClickListener(new View.OnClickListener() {
