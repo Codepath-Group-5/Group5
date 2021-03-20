@@ -1,6 +1,7 @@
 package com.example.stockpot.fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,17 +96,34 @@ public class SearchFragment extends Fragment {
                 pb.setVisibility(ProgressBar.VISIBLE);
 
 
-
                 // Clear the List of stocks when a new query is requested
                 allStocks.clear();
                 String keyWord = etText.getText().toString();
+                Log.i(TAG, keyWord);
 
                 // Toast.makeText(getContext(), "IT WORKED", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), keyWord, Toast.LENGTH_SHORT).show();
 
-                queryStocks(keyWord);
+                if (keyWord == "BA") {
+                    queryStocks(keyWord);
+                    pb.setVisibility(ProgressBar.INVISIBLE);
 
-                // run a background job and once complete
-                pb.setVisibility(ProgressBar.INVISIBLE);
+                }
+                else {
+                    // run a background job and once complete
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something after 5s = 5000ms
+                            queryStocks(keyWord);
+                            pb.setVisibility(ProgressBar.INVISIBLE);
+                        }
+                    }, 1500);
+                }
+
+
+
             }
         });
     }
