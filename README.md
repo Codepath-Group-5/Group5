@@ -79,6 +79,7 @@ Stockpot is an Android application developed to allow users to follow stocks, re
 
 ### [BONUS] Interactive Prototype
 <img src="gif/stockpot_prototype.gif" width=400>
+<iframe width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FadyZxIAvCCAnQBU6FzTSnW%2FStockpot-Wireframes%3Fnode-id%3D2%253A3%26scaling%3Dscale-down" allowfullscreen></iframe>
 
 ## Schema 
 ### Models
