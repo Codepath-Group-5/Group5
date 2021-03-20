@@ -73,10 +73,10 @@ Stockpot is an Android application developed to allow users to follow stocks, re
 ## Wireframes
 <img src="img/wireframe_hand_drawn.jpg" width=600>
 
-### [BONUS] Digital Wireframes & Mockups
+### Digital Wireframes & Mockups
 <img src="img/wireframe_digital.png" width=600>
 
-### [BONUS] Interactive Prototype
+### Interactive Prototype
 <img src="gif/stockpot_prototype.gif" width=400>
 
 ### Final Presentation of the Application (3/19/2021)
