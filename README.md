@@ -1,7 +1,7 @@
 Original App Design Project - README
 ===
 
-# Stockpile
+# Stockpot
 
 ## Table of Contents
 1. [Overview](#Overview)
@@ -11,14 +11,14 @@ Original App Design Project - README
 
 ## Overview
 ### Description
-Tracks stocks, and retrieves data from an API. Allows the user to receive an alert when a specific stock hits a certain price.
+Stockpot is an Android application developed to allow users to follow stocks, retrieve additional information on stocks, and interact with other users in a social media platform. Users can also create posts of their analysis and their predictions.
 
 ### App Evaluation
 - **Category:** Finance
-- **Mobile:** The application is primarly developed for mobile, however it would be viable for future implementation on computer or web-based applications.
+- **Mobile:** The application is primarly developed for mobile, however it would be viable for future implementation on desktop or web-based applications.
 - **Story:** Analyzes user selected stocks and displays data about them, and notifies them when stocks hit a threshold. 
 - **Market:** Any individual over 18 can use this application to augment their trading experience. 
-- **Habit:** This app can be used as often as the user would like depending on how interested the user is in stock trading.
+- **Habit:** This mobile app can be used as often as the user would like depending on how interested the user is in stock trading.
 - **Scope:** The audience of this app is targeted towards those who are interested in trading equities or learning more about trading in general.
 
 ## Product Spec
@@ -30,9 +30,8 @@ Tracks stocks, and retrieves data from an API. Allows the user to receive an ale
 * Create an account, log in, log out
 * Search for stock and have a list matching search query pop up
 * Detail view for the individual stock
-* Feed of related stocks 
 * Allow user to create a watchlist for easy access to favorited stocks
-* Allow user to create alerts for stocks
+* Create posts including analysis and predictions
 
 **Optional Nice-to-have Stories**
 
@@ -44,34 +43,30 @@ Tracks stocks, and retrieves data from an API. Allows the user to receive an ale
 
 * Login
 * Register - User signs up or logs into their account
-   * Upon Download/Reopening of the application, the user is prompted to log in to gain access to their profile information.
-* Home/Trending Feed
-   * User can view the current top trending stocks
-* Settings
-   * Allows user to set up the frequency of their alerts and how they receive their alerts
+   * Upon download/reopening of the application, the user is prompted to log in to gain access to their profile information
+* Home Feed
+   * User can view the most recent posts of other users (or their own posts) in order of latest posts appearing first
 * Search 
-    * Allows user to search for stocks.
+    * Allows user to search for stocks 
 * Detail 
-    * View in-depth information on the selected stocks from the ListView (Search Screen)
+    * View in-depth information on the selected stocks from the ListView (Search Screen or Profile Screen)
 * Profile
     * User can view their watchlist and other related information
-* Notifications 
-    * User can view their notifications.
+* Compose
+    * User can create a new post that will show up on the Home Feed  
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* Trending Feed
+* Home Feed
+* Compose
 * Search
-* Notifications
 * Profile / Watchlist
-* Settings
 
 **Flow Navigation** (Screen to Screen)
 
 * Forced Log-in -> Account creation if no log in is available
-* Settings -> Toggle Settings
 * Search -> Toggle Search -> Find the stock and show its data
 * Profile -> Detail
 
@@ -97,7 +92,34 @@ Tracks stocks, and retrieves data from an API. Allows the user to receive an ale
    | password      | String   | password for the user   |
    | stocks       | Array   | array of stocks |
    | notifications | Array | array of notifications | 
+   
+#### Stock
 
+| Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | name      | String   | name of the stock |
+   | tickerSym         | String     | abbreviation representing the stock |
+   | description      | String | description of the company/equity |
+   | wkLow      | String   | 52 week low   |
+   | wkHigh       | String   | 52 week high |
+   | open | String | price at open during the day | 
+   | high         | String     | highest price during the time period |
+   | low      | String   | lowest price during the time period   |
+   | price       | String   | current price |
+   | volume | String | number of buys and sells during the given time period | 
+   | change      | String   | the price difference of the day prior and the current day in decimal format   |
+   | changePercent       | String   | the price difference of the day prior and the current day in percentage format |
+   
+   
+#### Post
+
+| Property      | Type     | Description |
+   | ------------- | -------- | ------------|
+   | user      | String   | unique id for the user post (default field) |
+   | description         | File     | brief overview describing the Post created by the user |
+   | image      | String | image for the post |
+   | created_at      | String   | date and time when the post was created   |
+   
 ### Networking
 #### List of network requests by screen
    - Login/Register Screen
