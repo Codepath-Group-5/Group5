@@ -38,5 +38,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginBottom="0dp"
         android:layout_toEndOf="@+id/etText"
-        android:src="@android:drawable/ic_menu_search" />
+        android:src="@android:drawable/ic_menu_search"
+        android:background="@null"
+        />
 </RelativeLayout>
