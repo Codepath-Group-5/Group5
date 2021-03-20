@@ -243,3 +243,11 @@ Stockpot is an Android application developed to allow users to follow stocks, re
                }
            });
           ```
+          
+### Future Work
+If we had more time, we would have added the following features:
+* Caching data to reduce API calls
+* Messaging feature
+* Analyzing data via graphs
+* Alerts/Notifications for stocks
+* Improvements to UI/UX
