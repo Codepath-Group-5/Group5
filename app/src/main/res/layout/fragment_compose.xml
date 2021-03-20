@@ -14,11 +14,15 @@
         android:ems="10"
         android:hint="Description..." />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCaptureImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select Picture" />
+        android:text="Select Picture"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="#133E7C"
+        />
 
     <ImageView
         android:id="@+id/ivPostImage"
@@ -26,10 +30,14 @@
         android:layout_height="200dp"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit" />
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="#711C91"
+        />
 
 </LinearLayout>
