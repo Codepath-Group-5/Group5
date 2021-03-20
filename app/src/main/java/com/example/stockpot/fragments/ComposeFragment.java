@@ -1,18 +1,23 @@
 package com.example.stockpot.fragments;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.stockpot.R;
 import com.example.stockpot.models.Post;
 import com.parse.ParseException;
@@ -31,8 +37,11 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
+import java.io.IOException;
+
 
 import static android.app.Activity.RESULT_OK;
+import static androidx.core.content.ContextCompat.checkSelfPermission;
 
 public class ComposeFragment extends Fragment {
 
@@ -61,6 +70,9 @@ public class ComposeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        askPermissions();
+
         etDescription = view.findViewById(R.id.etDescription);
         btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
         ivPostImage = view.findViewById(R.id.ivPostImage);
@@ -99,6 +111,7 @@ public class ComposeFragment extends Fragment {
         startActivityForResult(finalIntent, IMAGE_SELECTED);
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -106,17 +119,45 @@ public class ComposeFragment extends Fragment {
             if (resultCode == RESULT_OK) {
                 assert data != null;
                 assert data.getData() != null;
+                // Get path
                 Uri photoData = data.getData();
-                //photoData = Uri.parse(photoData.getPath().replace("file://", ""));
-                Log.i(TAG, photoData.toString());
-
+                // Get real path
+                File file = new File(getPath(photoData));
+                photoData = Uri.fromFile(file);
                 photoFile = new File(photoData.getPath());
-                Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                // RESIZE BITMAP, see section below
-                // Load the taken image into a preview
-                ivPostImage.setImageBitmap(takenImage);
+
+                // Log
+                Log.i(TAG, photoData.getPath());
+
+                Bitmap image = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+                ivPostImage.setImageBitmap(image);
             }
         }
+    }
+
+    private void askPermissions() {
+        String[] permissions = {
+                "android.permission.READ_EXTERNAL_STORAGE",
+                "android.permission.WRITE_EXTERNAL_STORAGE"
+        };
+        int requestCode = 200;
+        requestPermissions(permissions, requestCode);
+    }
+
+    public String getPath (Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContext().getContentResolver().query(uri,
+                projection,
+                null,
+                null,
+                null);
+        if (cursor == null)
+            return null;
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String s = cursor.getString(column_index);
+        cursor.close();
+        return s;
     }
 
     private void savePost(String description, ParseUser currentUser, File photoFile) {
